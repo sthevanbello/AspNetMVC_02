@@ -22,7 +22,9 @@ namespace CasaDoCodigo.Controllers
 
         public IActionResult Carrossel()
         {
+            //Testar com Projeto Piloto
             return View(produtoRepository.GetProdutos());
+
         }
 
         public IActionResult Carrinho(string codigo)
