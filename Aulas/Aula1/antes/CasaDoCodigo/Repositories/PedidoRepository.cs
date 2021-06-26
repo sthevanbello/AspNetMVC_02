@@ -8,18 +8,12 @@ using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Repositories
 {
-    public interface IPedidoRepository
-    {
-        Pedido GetPedido();
-        void AddItem(string codigo);
-    }
 
     public class PedidoRepository : BaseRepository<Pedido>, IPedidoRepository
     {
         private readonly IHttpContextAccessor contextAccessor; 
 
-        public PedidoRepository(ApplicationContext contexto,
-            IHttpContextAccessor contextAccessor) : base(contexto)
+        public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAccessor) : base(contexto)
         {
             this.contextAccessor = contextAccessor;
         }
@@ -55,11 +49,8 @@ namespace CasaDoCodigo.Repositories
         public Pedido GetPedido()
         {
             var pedidoId = GetPedidoId();
-            var pedido = dbSet
-                .Include(p => p.Itens)
-                    .ThenInclude(i => i.Produto)
-                .Where(p => p.Id == pedidoId)
-                .SingleOrDefault();
+
+            var pedido = dbSet.Include(p => p.Itens).ThenInclude(i => i.Produto).Where(p => p.Id == pedidoId).SingleOrDefault();
 
             if (pedido == null)
             {

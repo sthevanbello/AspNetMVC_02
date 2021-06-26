@@ -24,6 +24,7 @@ namespace CasaDoCodigo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
             services.AddDistributedMemoryCache();
             services.AddSession();
 
