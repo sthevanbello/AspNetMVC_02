@@ -20,9 +20,7 @@ namespace CasaDoCodigo.Repositories
 
         public void AddItem(string codigo)
         {
-            var produto = contexto.Set<Produto>()
-                            .Where(p => p.Codigo == codigo)
-                            .SingleOrDefault();
+            var produto = contexto.Set<Produto>().Where(p => p.Codigo == codigo).SingleOrDefault();
 
             if (produto == null)
             {
@@ -31,10 +29,7 @@ namespace CasaDoCodigo.Repositories
 
             var pedido = GetPedido();
 
-            var itemPedido = contexto.Set<ItemPedido>()
-                                .Where(i => i.Produto.Codigo == codigo
-                                        && i.Pedido.Id == pedido.Id)
-                                .SingleOrDefault();
+            var itemPedido = contexto.Set<ItemPedido>().Where(i => i.Produto.Codigo == codigo && i.Pedido.Id == pedido.Id).SingleOrDefault();
 
             if (itemPedido == null)
             {
