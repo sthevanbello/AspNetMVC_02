@@ -37,9 +37,10 @@ class Carrinho {
             data: JSON.stringify(data)
         }).done(function (response) {
             let itemPedido = response.itemPedido;
-            let linhaDoItem = $('[item-id = ' + itemPedido.Id + ']');
-            linhaDoItem.find('input').val(itemPedido.Quantidade);
-            linhaDoItem.find('[subtotal]').html((itemPedido.Subtotal))
+            let linhaDoItem = $('[item-id = ' + itemPedido.id + ']');
+            linhaDoItem.find('input').val(itemPedido.quantidade);
+            linhaDoItem.find('[subtotal]').html((itemPedido.subtotal))
+
 
 
             debugger;
