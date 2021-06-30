@@ -9,8 +9,7 @@ class Carrinho {
     clickDecremento(btn) {
         let data = this.getData(btn);
         data.Quantidade--;
-        this.postQuantidade(data);                          
-    }
+        this.postQuantidade(data);    }
 
     updateQuantidade(input) {
         let data = this.getData(input);
@@ -37,10 +36,20 @@ class Carrinho {
             contentType: 'application/json',
             data: JSON.stringify(data)
         }).done(function (response) {
-            location.reload();
+            let itemPedido = response.itemPedido;
+            let linhaDoItem = $('[item-id = ' + itemPedido.Id + ']');
+            linhaDoItem.find('input').val(itemPedido.Quantidade);
+            linhaDoItem.find('[subtotal]').html((itemPedido.Subtotal))
+
+
+            debugger;
         });
     }
 }
 
 var carrinho = new Carrinho();
+
+Number.prototype.duasCasas = function () {
+    return this.toFixed(2).replace('.', ',');
+}
 
